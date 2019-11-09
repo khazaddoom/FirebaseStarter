@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PostsService } from './posts.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Firebase-Starter';
+
+  response;
+
+  constructor(private _postsService: PostsService) {}
+
+  ngOnInit() {
+    this._postsService.putData().subscribe(response => {
+      this.response = response
+    })
+  }
 }
