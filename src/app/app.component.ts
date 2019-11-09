@@ -8,13 +8,11 @@ import { PostsService } from './posts.service';
 })
 export class AppComponent {
 
-  response;
+  response$;
 
   constructor(private _postsService: PostsService) {}
 
   ngOnInit() {
-    this._postsService.putData().subscribe(response => {
-      this.response = response
-    })
+    this.response$ = this._postsService.putData();
   }
 }

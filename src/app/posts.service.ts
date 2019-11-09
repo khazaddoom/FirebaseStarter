@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { map } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +22,11 @@ export class PostsService {
       author: 'Lea Verou',
       price: 1500,
       currency: 'INR'
-    });
+    }).pipe(
+      map((data:any) => {
+        return `Author: ${data.author}`
+      })
+    );
   }
 
 }
